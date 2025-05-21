@@ -1,0 +1,36 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Student Records</h2>
+
+    <form method="GET" action="/admin">
+        <label for="gender">Filter by Gender:</label>
+        <select name="gender" id="gender" onchange="this.form.submit()">
+            <option value="">All</option>
+            <option value="Male" {% if selected_gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if selected_gender == 'Female' %}selected{% endif %}>Female</option>
+        </select>
+    </form>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Gender</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
